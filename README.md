@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wolox-training/jf-rails.svg?branch=master)](https://travis-ci.org/wolox-training/jf-rails)
+
 # README
 
 RoR Trainning JFlores

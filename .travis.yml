@@ -1,0 +1,29 @@
+language: ruby
+rvm:
+  - 2.4.0
+
+env:
+  global:
+    - RUBY_GC_MALLOC_LIMIT=90000000
+    - RUBY_GC_HEAP_FREE_SLOTS=200000
+    - SECURITY_SECRET_TOKEN=traviscitraviscitraviscitraviscitravisci
+
+services:
+  - postgresql
+
+before_install:
+  - "echo '--colour' > ~/.rspec"
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  - gem update --system
+
+before_script:
+  - psql -c "CREATE USER \"wbooks_api\" WITH PASSWORD 'wbooks_api';" -U postgres
+  - psql -c "DROP DATABASE IF EXISTS \"wbooks_api_test\";" -U postgres
+  - psql -c "CREATE DATABASE \"wbooks_api_test\" ENCODING 'utf8';" -U postgres
+  - bundle exec rake db:migrate
+
+script:
+  - bundle exec rubocop app spec -R --format simple
+
+cache:
+  bundler: true
