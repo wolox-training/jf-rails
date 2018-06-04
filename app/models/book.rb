@@ -1,4 +1,8 @@
 class Book < ApplicationRecord
-    validates_presence_of :genre, :author, :image, :title, :publisher, :year
-
+  validates :genre, presence: true
+  validates :author, presence: true
+  validates :image, presence: true
+  validates :title, presence: true
+  validates :publisher, presence: true
+  validates :year, presence: true
 end
