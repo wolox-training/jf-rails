@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Book do
   subject(:book) { create(:book) }
-  
+
   it '#validate' do
     is_expected.to validate_presence_of :genre
     is_expected.to validate_presence_of :author
@@ -15,5 +15,4 @@ describe Book do
   it 'valid book' do
     is_expected.to be_valid
   end
-
 end

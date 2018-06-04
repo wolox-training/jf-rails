@@ -5,6 +5,6 @@ FactoryBot.define do
     image Faker::Avatar.image
     title Faker::Book.title
     publisher Faker::Book.publisher
-    year Faker::Number.between(1950, Date.today.year)
+    year Faker::Number.between(1950, Time.zone.today.year)
   end
 end

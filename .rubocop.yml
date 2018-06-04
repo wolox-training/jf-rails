@@ -4,3 +4,12 @@ Documentation:
 
 Metrics/LineLength:
   Max: 99
+
+AllCops:
+ Exclude:
+   - spec/spec_helper.rb
+   - spec/rails_helper.rb
+   - db/**/*
+   - docs/**/*
+   - config/**/*
+   - bin/**/*
