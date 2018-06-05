@@ -17,13 +17,14 @@ before_install:
   - gem update --system
 
 before_script:
-  - psql -c "CREATE USER \"wbooks_api\" WITH PASSWORD 'wbooks_api';" -U postgres
+  - psql -c "CREATE USER \"wbooks-api\" WITH PASSWORD 'wbooks-api';" -U postgres
   - psql -c "DROP DATABASE IF EXISTS \"wbooks_api_test\";" -U postgres
   - psql -c "CREATE DATABASE \"wbooks_api_test\" ENCODING 'utf8';" -U postgres
   - bundle exec rake db:migrate
 
 script:
   - bundle exec rubocop app spec -R --format simple
+  - bundle exec rspec spec -fd
 
 cache:
   bundler: true
