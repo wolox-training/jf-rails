@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-describe BookController do
+describe BooksController do
 end
