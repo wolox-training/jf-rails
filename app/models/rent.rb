@@ -1,6 +1,6 @@
 class Rent < ApplicationRecord
-  validates :user_id, :book_id, :from, :to, presence: true
-  validate :from_cannot_be_greater_than_to, if: proc { |r| r.from.present? && r.to.present? }
+  validates :user, :book, :from, :to, presence: true
+  validate :from_cannot_be_greater_than_to, if: -> { from.present? && to.present? }
 
   belongs_to :user
   belongs_to :book
