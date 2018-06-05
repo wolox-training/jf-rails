@@ -10,12 +10,12 @@ class BooksController < ApplicationController
   # Summary: List books with filters ang paginated
   def index
     books = filtrate(Book.all)
-    render_paginated books, each_serializer: BookSerializer
+    render_paginated(books, each_serializer: BookSerializer)
   end
 
   # Summary: Show a single book json by id
   def show
-    return render(plain: 'Not Found', status: 404) unless Book.exists?(params['id'])
-    render json: Book.find(params['id']), serializer: ShowBookSerializer
+    return render(plain: 'Not Found', status: :not_found) unless Book.exists?(params['id'])
+    render(json: Book.find(params['id']), serializer: ShowBookSerializer)
   end
 end
