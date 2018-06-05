@@ -7,6 +7,8 @@ class BooksController < ApplicationController
   filter_on :title, type: :string
   filter_on :description, type: :string
 
+  before_action :authenticate_user!
+
   # Summary: List books with filters ang paginated
   def index
     books = filtrate(Book.all)
