@@ -45,6 +45,9 @@ gem 'active_model_serializers', '~> 0.10.0'
 # filter
 gem 'brita', '~> 0.10.0'
 
+# API version
+gem 'versionist', '~> 1.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
