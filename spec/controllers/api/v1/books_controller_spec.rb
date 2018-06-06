@@ -13,7 +13,7 @@ describe Api::V1::BooksController do
 
       it 'responses with the books json' do
         expected = ActiveModel::Serializer::CollectionSerializer.new(
-          books, each_serializer: BookSerializer
+          books, serializer: BookSerializer
         ).to_json
 
         expect(JSON.parse(response.body)['page']).to eq(JSON.parse(expected))
@@ -34,7 +34,7 @@ describe Api::V1::BooksController do
 
       it 'responses with the right book json' do
         expected = ActiveModel::Serializer::CollectionSerializer.new(
-          [book], each_serializer: BookSerializer
+          [book], serializer: BookSerializer
         ).to_json
 
         expect(JSON.parse(response.body)['page']).to eq(JSON.parse(expected))
