@@ -6,6 +6,6 @@ class ShowBookSerializer < ActiveModel::Serializer
   end
 
   def actual_rent
-    RentSerializer.new(object.rents.last).as_json
+    RentSerializer.new(object.rents.last).as_json unless object.rents.empty?
   end
 end

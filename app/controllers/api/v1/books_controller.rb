@@ -1,9 +1,6 @@
 module Api
   module V1
     class BooksController < ApiController
-      include Wor::Paginate
-      include Brita
-
       filter_on :author, type: :string
       filter_on :genre, type: :string
       filter_on :title, type: :string
@@ -19,7 +16,6 @@ module Api
 
       # Summary: Show a single book json by id
       def show
-        return render(plain: 'Not Found', status: :not_found) unless Book.exists?(params['id'])
         render(json: Book.find(params['id']), serializer: ShowBookSerializer)
       end
     end
