@@ -13,3 +13,7 @@ AllCops:
    - docs/**/*
    - config/**/*
    - bin/**/*
+
+Metrics/BlockLength:
+ Exclude:
+   - spec/**/*
