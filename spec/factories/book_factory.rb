@@ -8,7 +8,7 @@ FactoryBot.define do
     year      { Faker::Number.between(1950, Time.zone.today.year) }
   end
 
-  factory :book_rented, parent: :book do
+  trait :rented do
     after(:create) do |book|
       create(:rent, book: book)
     end
