@@ -7,4 +7,10 @@ FactoryBot.define do
     publisher { Faker::Book.publisher }
     year      { Faker::Number.between(1950, Time.zone.today.year) }
   end
+
+  trait :rented do
+    after(:create) do |book|
+      create(:rent, book: book)
+    end
+  end
 end
