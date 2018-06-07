@@ -5,29 +5,30 @@ module Api
 
       # Summary: List rents of the user or book
       def index
-        rents = Rent.where(user_id: params['user_id']) if params['user_id'].present?
-        rents = Rent.where(book_id: params['book_id']) if params['book_id'].present?
-        render_paginated(filtrate(rents), each_serializer: UserRentSerializer)
+        rents = Rent.where(search_param)
+        render_paginated(filtrate(rents), each_serializer: RentSerializer)
       end
 
       # Summary: Create a rent by a user request
       def create
-        check_creation_params
-        rent = Rent.create(user: current_user,
-                           book: Book.find(params['book_id']),
-                           from: params['from'],
-                           to: params['to'])
-        render(json: rent, serializer: UserRentSerializer)
+        rent = Rent.new(creation_params)
+        return invalid_params unless rent.save
+        render(json: rent, serializer: RentSerializer)
       end
 
       private
 
       # Summary: Check params on creation service
-      def check_creation_params
+      def creation_params
+        params['user_id'] = current_user.id
         params.require(%i[book_id from to])
-        from = Date.parse(params['from'])
-        to = Date.parse(params['to'])
-        raise(ActionController::ParameterMissing.new(params), 'from > to') if from > to
+        params.permit(:book_id, :user_id, :from, :to)
+      end
+
+      # Summary: Build search params
+      def search_param
+        return { user_id: params['user_id'] } if params['user_id'].present?
+        return { book_id: params['book_id'] } if params['book_id'].present?
       end
     end
   end
