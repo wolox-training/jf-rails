@@ -12,11 +12,22 @@ module Api
 
       # Summary: Create a rent by a user request
       def create
+        check_creation_params
         rent = Rent.create(user: current_user,
                            book: Book.find(params['book_id']),
                            from: params['from'],
                            to: params['to'])
         render(json: rent, serializer: UserRentSerializer)
+      end
+
+      private
+
+      # Summary: Check params on creation service
+      def check_creation_params
+        params.require(%i[book_id from to])
+        from = Date.parse(params['from'])
+        to = Date.parse(params['to'])
+        raise(ActionController::ParameterMissing.new(params), 'from > to') if from > to
       end
     end
   end

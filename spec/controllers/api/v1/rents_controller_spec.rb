@@ -74,8 +74,8 @@ describe Api::V1::RentsController do
         post :create, params: { user_id: user.id, from: from, to: to }
       end
 
-      it 'responds with not_found status' do
-        expect(response).to have_http_status(:not_found)
+      it 'responds with bad_request status' do
+        expect(response).to have_http_status(:bad_request)
       end
     end
 
@@ -87,8 +87,8 @@ describe Api::V1::RentsController do
         post :create, params: { user_id: user.id, book_id: book.id, to: to }
       end
 
-      it 'responds with not_found status' do
-        expect(response).to have_http_status(:not_found)
+      it 'responds with bad_request status' do
+        expect(response).to have_http_status(:bad_request)
       end
     end
 
@@ -100,8 +100,22 @@ describe Api::V1::RentsController do
         post :create, params: { user_id: user.id, book_id: book.id, from: from }
       end
 
-      it 'responds with not_found status' do
-        expect(response).to have_http_status(:not_found)
+      it 'responds with bad_request status' do
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
+    context 'When create a rent without a to date' do
+      let!(:book) { create(:book) }
+      let!(:from) { Faker::Date.between(Time.zone.today, 10.days.from_now) }
+      let!(:to) { Faker::Date.between(2.days.ago, Time.zone.today) }
+
+      before do
+        post :create, params: { user_id: user.id, book_id: book.id, from: from, to: to }
+      end
+
+      it 'responds with bad_request status' do
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end
