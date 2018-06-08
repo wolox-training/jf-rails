@@ -126,7 +126,7 @@ describe Api::V1::RentsController do
 
     context 'When create a rent with from after to date' do
       let!(:book) { create(:book) }
-      let!(:from) { Faker::Date.between(Time.zone.today, 10.days.from_now) }
+      let!(:from) { Faker::Date.between(Time.zone.tomorrow, 10.days.from_now) }
       let!(:to) { Faker::Date.between(2.days.ago, Time.zone.today) }
       let!(:params) { { user_id: user.id, book_id: book.id, from: from, to: to } }
 
