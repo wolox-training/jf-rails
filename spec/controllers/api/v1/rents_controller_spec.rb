@@ -69,7 +69,7 @@ describe Api::V1::RentsController do
 
       it 'responds with 200 status' do
         create_request
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:created)
       end
     end
 

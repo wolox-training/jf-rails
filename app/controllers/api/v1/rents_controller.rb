@@ -13,7 +13,7 @@ module Api
       def create
         rent = Rent.new(creation_params)
         return invalid_params unless rent.save
-        render(json: rent, serializer: RentSerializer)
+        render(json: rent, serializer: RentSerializer, status: :created)
       end
 
       private
