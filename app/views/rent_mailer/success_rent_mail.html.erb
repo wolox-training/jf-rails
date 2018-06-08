@@ -1,0 +1,10 @@
+<h1>Hola, <%= @user.first_name %></h1>
+<p>
+  You have successfully rented book at: <%= @rent.created_at %>.<br>
+</p>
+<p>
+  Your awesome book is: <%= @rent.book.title %>.
+</p>
+<p>
+  remember, the book it's yours in dates <%= @rent.from %> to <%= @rent.to %> 
+</p>

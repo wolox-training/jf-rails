@@ -2,7 +2,7 @@
 
 # README
 
-RoR Trainning JFlores
+RoR Training JFlores
 
 Details:
 

@@ -1,0 +1,16 @@
+<h1>Hola, <%= @user.first_name %></h1>
+<p>
+  You have successfully rented book at: <%= @rent.created_at.strftime('%Y-%m-%d') %>.<br>
+</p>
+<p>
+  Your awesome book is: <br>
+    Title:      <%= @book.title %> <br>
+    Genre:      <%= @book.genre %> <br>
+    Author:     <%= @book.author %> <br>
+    Publisher:  <%= @book.publisher %> <br>
+    Year:       <%= @book.year %> <br>
+</p>
+<p>
+  Remember, the book it's yours from <%= @rent.from %> to <%= @rent.to %> 
+</p>
+Bye!<br>
