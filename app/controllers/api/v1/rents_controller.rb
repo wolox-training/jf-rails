@@ -38,10 +38,8 @@ module Api
         RentMailer.success_rent_email(rent.id).deliver_later
       end
 
-      private
-
       # Set locale for translate
-      def set_locale
+      private def set_locale
         I18n.locale = current_user.locale || I18n.default_locale
       end
     end
