@@ -34,7 +34,7 @@ module Api
 
       # Summary: Send email on creation service
       def send_mail_on_creation(rent)
-        RentMailer.success_rent_email(current_user, rent, rent.book).deliver_later
+        RentMailer.success_rent_email(current_user.id, rent.id).deliver_later
       end
     end
   end
