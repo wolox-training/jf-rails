@@ -13,6 +13,7 @@ module Api
       def create
         rent = Rent.new(creation_params)
         return invalid_params unless rent.save
+        send_mail_on_creation(rent)
         render(json: rent, serializer: RentSerializer, status: :created)
       end
 
@@ -29,6 +30,11 @@ module Api
       def search_param
         return { user_id: params['user_id'] } if params['user_id'].present?
         return { book_id: params['book_id'] } if params['book_id'].present?
+      end
+
+      # Summary: Send email on creation service
+      def send_mail_on_creation(rent)
+        RentMailer.success_rent_email(rent.id).deliver_later
       end
     end
   end

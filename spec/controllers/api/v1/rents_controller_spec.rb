@@ -71,6 +71,10 @@ describe Api::V1::RentsController do
         create_request
         expect(response).to have_http_status(:created)
       end
+
+      it 'Enqueues a mailer job' do
+        expect { create_request }.to change { Sidekiq::Worker.jobs.size }.by(1)
+      end
     end
 
     context 'When create a rent without a book' do
