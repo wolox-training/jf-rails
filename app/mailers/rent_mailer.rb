@@ -1,7 +1,7 @@
 class RentMailer < ApplicationMailer
-  def success_rent_email(user_id, rent_id)
-    @user = User.find(user_id)
+  def success_rent_email(rent_id)
     @rent = Rent.find(rent_id)
+    @user = @rent.user
     @book = @rent.book
     mail(to: @user.email, subject: 'Awesome book rented')
   end

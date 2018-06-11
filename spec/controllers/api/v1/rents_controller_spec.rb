@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'sidekiq/testing'
 
 describe Api::V1::RentsController do
   include_context 'Authenticated User'
@@ -73,7 +72,7 @@ describe Api::V1::RentsController do
         expect(response).to have_http_status(:created)
       end
 
-      it 'sends a notification email' do
+      it 'Enqueues a mailer job' do
         expect { create_request }.to change { Sidekiq::Worker.jobs.size }.by(1)
       end
     end
