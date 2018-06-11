@@ -1,0 +1,14 @@
+es:
+  hello: "Hola, %{first_name}."
+
+  new_rent_mail:
+    book_rented: "Rentaste exitosamente un libro el %{date_rented}."
+    book_info: "Tu genial libro es:"
+    title: "Título: %{title}"
+    genre: "Género: %{genre}"
+    author: "Autor: %{author}"
+    publisher: "Editorial: %{publisher}"
+    year: "Año: %{year}"
+    range_rent: "Recuerda, el libro es tuyo desde %{from} hasta %{to}."
+
+  bye: "Chao!"
