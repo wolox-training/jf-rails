@@ -9,6 +9,13 @@ module Api
         render_paginated(filtrate(rents), each_serializer: RentSerializer)
       end
 
+      # Summary: show info of a rent
+      def show
+        rent = Rent.find(params['rent_id'])
+        authorize rent
+        render(json: rent, serializer: RentSerializer)
+      end
+
       # Summary: Create a rent by a user request
       def create
         rent = Rent.new(creation_params)
