@@ -146,4 +146,38 @@ describe Api::V1::RentsController do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'When is the owner' do
+      let!(:rents_other_user) { create_list(:rent, 3) }
+      let!(:rent) { create(:rent, user: user) }
+
+      before do
+        get :show, params: { rent_id: rent.id, user_id: user.id }
+      end
+
+      it 'responses with the rents json' do
+        expected = RentSerializer.new(rent).to_json
+        expect(JSON.parse(response.body)).to eq(JSON.parse(expected))
+      end
+
+      it 'responds with 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'When is not the owner' do
+      let!(:book) { create(:book) }
+      let!(:rent_other_user) { create(:rent) }
+      let!(:rent) { create(:rent, user: user) }
+
+      before do
+        get :show, params: { rent_id: rent_other_user.id, user_id: user.id }
+      end
+
+      it 'responds with unauthorized status' do
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :books, only: [:index, :show]
 
     resources :users, only: [] do
-      resource :rents, only: [:create]
+      resource :rents, only: [:create, :show]
       get 'rents', to: 'rents#index'
     end
 

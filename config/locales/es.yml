@@ -12,3 +12,7 @@ es:
     range_rent: "Recuerda, el libro es tuyo desde %{from} hasta %{to}."
 
   bye: "Chao!"
+
+  devise:
+    failure:
+      unauthenticated: 'No autorizado'
