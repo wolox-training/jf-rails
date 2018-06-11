@@ -32,16 +32,15 @@
 en:
   hello: "Hello, %{first_name}."
 
-  book_rented: "You have successfully rented a book at %{date_rented}."
-
-  book_info: "Your awesome book is:"
-  title: "Title: %{title}"
-  genre: "Genre: %{genre}"
-  author: "Author: %{author}"
-  publisher: "Publisher: %{publisher}"
-  year: "Year: %{year}"
-
-  range_rent: "Remember, the book it's yours from %{from} to %{to}."
+  new_rent_mail:
+    book_rented: "You have successfully rented a book at %{date_rented}."
+    book_info: "Your awesome book is:"
+    title: "Title: %{title}"
+    genre: "Genre: %{genre}"
+    author: "Author: %{author}"
+    publisher: "Publisher: %{publisher}"
+    year: "Year: %{year}"
+    range_rent: "Remember, the book it's yours from %{from} to %{to}."
 
   bye: "Bye!"
 
