@@ -2,6 +2,7 @@ module Api
   module V1
     class RentsController < ApiController
       before_action :authenticate_user!
+      before_action :set_locale
 
       # Summary: List rents of the user or book
       def index
@@ -35,6 +36,13 @@ module Api
       # Summary: Send email on creation service
       def send_mail_on_creation(rent)
         RentMailer.success_rent_email(rent.id).deliver_later
+      end
+
+      private
+
+      # Set locale for translate
+      def set_locale
+        I18n.locale = current_user.locale || I18n.default_locale
       end
     end
   end

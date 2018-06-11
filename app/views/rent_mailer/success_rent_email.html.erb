@@ -1,16 +1,16 @@
-<h1>Hola, <%= @user.first_name %></h1>
+<h1><%= t('hello', first_name: @user.first_name) %></h1>
 <p>
-  You have successfully rented book at: <%= @rent.created_at.strftime('%Y-%m-%d') %>.<br>
+  <%= t('book_rented', date_rented: @rent.created_at.strftime('%Y-%m-%d')) %><br>
 </p>
 <p>
-  Your awesome book is: <br>
-    Title:      <%= @book.title %> <br>
-    Genre:      <%= @book.genre %> <br>
-    Author:     <%= @book.author %> <br>
-    Publisher:  <%= @book.publisher %> <br>
-    Year:       <%= @book.year %> <br>
+   <%= t('book_info') %> <br>
+     <%= t('title', title: @book.title) %> <br>
+     <%= t('genre', genre: @book.genre) %> <br>
+     <%= t('author', author: @book.author) %> <br>
+     <%= t('publisher', publisher: @book.publisher) %> <br>
+     <%= t('year', year: @book.year) %> <br>
 </p>
 <p>
-  Remember, the book it's yours from <%= @rent.from %> to <%= @rent.to %> 
+  <%= t('range_rent', from: @rent.from, to: @rent.to) %>
 </p>
-Bye!<br>
+<%= t('bye') %><br>

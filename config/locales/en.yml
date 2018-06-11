@@ -30,4 +30,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello, %{first_name}."
+
+  book_rented: "You have successfully rented a book at %{date_rented}."
+
+  book_info: "Your awesome book is:"
+  title: "Title: %{title}"
+  genre: "Genre: %{genre}"
+  author: "Author: %{author}"
+  publisher: "Publisher: %{publisher}"
+  year: "Year: %{year}"
+
+  range_rent: "Remember, the book it's yours from %{from} to %{to}."
+
+  bye: "Bye!"
+
+
+
