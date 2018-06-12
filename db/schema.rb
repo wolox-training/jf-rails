@@ -49,12 +49,12 @@ ActiveRecord::Schema.define(version: 20180612141601) do
   create_table "book_suggestions", force: :cascade do |t|
     t.string "editorial"
     t.float "price"
-    t.string "author"
-    t.string "title"
-    t.string "link"
+    t.string "author", null: false
+    t.string "title", null: false
+    t.string "link", null: false
     t.string "publisher"
     t.string "year"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_book_suggestions_on_user_id"
