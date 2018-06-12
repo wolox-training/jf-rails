@@ -3,27 +3,8 @@ require 'rails_helper'
 describe Api::V1::BookSuggestionsController do
   describe 'POST #create' do
     context 'When create a book suggestion' do
-      let!(:editorial) { Faker::Book.publisher }
-      let!(:price)     { Faker::Commerce.price }
-      let!(:author)    { Faker::Book.author }
-      let!(:title)     { Faker::Book.title }
-      let!(:link)      { Faker::Internet.url }
-      let!(:publisher) { Faker::Book.publisher }
-      let!(:year)      { Faker::Number.between(1950, Time.zone.today.year) }
-      let!(:user)      { create(:user) }
-
-      let!(:params) do
-        {
-          editorial: editorial,
-          price: price,
-          author: author,
-          title: title,
-          link: link,
-          publisher: publisher,
-          year: year,
-          user_id: user.id
-        }
-      end
+      let!(:user)   { create(:user) }
+      let!(:params) { attributes_for(:book_suggestion).merge(user_id: user.id) }
 
       subject(:create_request) { post :create, params: params }
 
@@ -44,25 +25,7 @@ describe Api::V1::BookSuggestionsController do
     end
 
     context 'When create a book suggestion without a user' do
-      let!(:editorial) { Faker::Book.publisher }
-      let!(:price)     { Faker::Commerce.price }
-      let!(:author)    { Faker::Book.author }
-      let!(:title)     { Faker::Book.title }
-      let!(:link)      { Faker::Internet.url }
-      let!(:publisher) { Faker::Book.publisher }
-      let!(:year)      { Faker::Number.between(1950, Time.zone.today.year) }
-
-      let!(:params) do
-        {
-          editorial: editorial,
-          price: price,
-          author: author,
-          title: title,
-          link: link,
-          publisher: publisher,
-          year: year
-        }
-      end
+      let!(:params) { attributes_for(:book_suggestion) }
 
       subject(:create_request) { post :create, params: params }
 
@@ -83,25 +46,7 @@ describe Api::V1::BookSuggestionsController do
     end
 
     context 'When create a book suggestion without an author' do
-      let!(:editorial) { Faker::Book.publisher }
-      let!(:price)     { Faker::Commerce.price }
-      let!(:title)     { Faker::Book.title }
-      let!(:link)      { Faker::Internet.url }
-      let!(:publisher) { Faker::Book.publisher }
-      let!(:year)      { Faker::Number.between(1950, Time.zone.today.year) }
-      let!(:user)      { create(:user) }
-
-      let!(:params) do
-        {
-          editorial: editorial,
-          price: price,
-          title: title,
-          link: link,
-          publisher: publisher,
-          year: year,
-          user_id: user.id
-        }
-      end
+      let!(:params) { attributes_for(:book_suggestion).except(:author) }
 
       subject(:create_request) { post :create, params: params }
 
@@ -121,25 +66,7 @@ describe Api::V1::BookSuggestionsController do
     end
 
     context 'When create a book suggestion without title' do
-      let!(:editorial) { Faker::Book.publisher }
-      let!(:price)     { Faker::Commerce.price }
-      let!(:author)    { Faker::Book.author }
-      let!(:link)      { Faker::Internet.url }
-      let!(:publisher) { Faker::Book.publisher }
-      let!(:year)      { Faker::Number.between(1950, Time.zone.today.year) }
-      let!(:user)      { create(:user) }
-
-      let!(:params) do
-        {
-          editorial: editorial,
-          price: price,
-          author: author,
-          link: link,
-          publisher: publisher,
-          year: year,
-          user_id: user.id
-        }
-      end
+      let!(:params) { attributes_for(:book_suggestion).except(:title) }
 
       subject(:create_request) { post :create, params: params }
 
@@ -159,25 +86,7 @@ describe Api::V1::BookSuggestionsController do
     end
 
     context 'When create a book suggestion without link' do
-      let!(:editorial) { Faker::Book.publisher }
-      let!(:price)     { Faker::Commerce.price }
-      let!(:author)    { Faker::Book.author }
-      let!(:title)     { Faker::Book.title }
-      let!(:publisher) { Faker::Book.publisher }
-      let!(:year)      { Faker::Number.between(1950, Time.zone.today.year) }
-      let!(:user)      { create(:user) }
-
-      let!(:params) do
-        {
-          editorial: editorial,
-          price: price,
-          author: author,
-          title: title,
-          publisher: publisher,
-          year: year,
-          user_id: user.id
-        }
-      end
+      let!(:params) { attributes_for(:book_suggestion).except(:link) }
 
       subject(:create_request) { post :create, params: params }
 

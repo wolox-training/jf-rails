@@ -4,7 +4,7 @@ module Api
       # Summary: Create a book suggestion
       def create
         book_suggestion = BookSuggestion.new(creation_params)
-        return invalid_params unless book_suggestion.save
+        return invalid_params(book_suggestion.errors) unless book_suggestion.save
         render(json: book_suggestion, serializer: BookSuggestionSerializer, status: :created)
       end
 

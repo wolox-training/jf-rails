@@ -19,7 +19,7 @@ module Api
       # Summary: Create a rent by a user request
       def create
         rent = Rent.new(creation_params)
-        return invalid_params unless rent.save
+        return invalid_params(rent.errors) unless rent.save
         send_mail_on_creation(rent)
         render(json: rent, serializer: RentSerializer, status: :created)
       end

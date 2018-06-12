@@ -16,8 +16,10 @@ class ApiController < ActionController::Base
     render json: { error: 'Record not found' }, status: :not_found
   end
 
-  def invalid_params
-    render json: { error: 'Invalid params' }, status: :bad_request
+  def invalid_params(error_detail)
+    message = error_detail.to_s if error_detail.class == ActionController::ParameterMissing
+    message = error_detail.full_messages.join(' - ') if error_detail.class == ActiveModel::Errors
+    render json: { error: 'Invalid params', error_detail: message }, status: :bad_request
   end
 
   def user_not_authorized
