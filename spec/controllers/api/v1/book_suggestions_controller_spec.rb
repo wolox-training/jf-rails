@@ -82,7 +82,7 @@ describe Api::V1::BookSuggestionsController do
       end
     end
 
-    context 'When create a rent without an author' do
+    context 'When create a book suggestion without an author' do
       let!(:editorial) { Faker::Book.publisher }
       let!(:price)     { Faker::Commerce.price }
       let!(:title)     { Faker::Book.title }
@@ -105,7 +105,7 @@ describe Api::V1::BookSuggestionsController do
 
       subject(:create_request) { post :create, params: params }
 
-      it 'rents not change count' do
+      it 'book suggestions not change count' do
         expect { create_request }.not_to(change { BookSuggestion.count })
       end
 
@@ -120,7 +120,7 @@ describe Api::V1::BookSuggestionsController do
       end
     end
 
-    context 'When create a rent without title' do
+    context 'When create a book suggestion without title' do
       let!(:editorial) { Faker::Book.publisher }
       let!(:price)     { Faker::Commerce.price }
       let!(:author)    { Faker::Book.author }
@@ -143,7 +143,7 @@ describe Api::V1::BookSuggestionsController do
 
       subject(:create_request) { post :create, params: params }
 
-      it 'rents not change count' do
+      it 'book suggestions not change count' do
         expect { create_request }.not_to(change { BookSuggestion.count })
       end
 
@@ -158,7 +158,7 @@ describe Api::V1::BookSuggestionsController do
       end
     end
 
-    context 'When create a rent without link' do
+    context 'When create a book suggestion without link' do
       let!(:editorial) { Faker::Book.publisher }
       let!(:price)     { Faker::Commerce.price }
       let!(:author)    { Faker::Book.author }
@@ -181,7 +181,7 @@ describe Api::V1::BookSuggestionsController do
 
       subject(:create_request) { post :create, params: params }
 
-      it 'rents not change count' do
+      it 'book suggestions not change count' do
         expect { create_request }.not_to(change { BookSuggestion.count })
       end
 
