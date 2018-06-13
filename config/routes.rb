@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   api_version(module: 'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
-    resources :books, only: [:index, :show]
+    resources :books, only: [:index, :show] do
+      get 'rents', to: 'rents#index'
+      collection do
+        get 'book_info'
+      end
+    end
 
     resources :users, only: [] do
       resource :rents, only: [:create, :show]
-      get 'rents', to: 'rents#index'
-    end
-
-    resources :books, only: [] do
       get 'rents', to: 'rents#index'
     end
 

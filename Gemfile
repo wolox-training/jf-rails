@@ -55,6 +55,9 @@ gem 'sidekiq', '~> 5.1', '>= 5.1.3'
 # authorization policies
 gem 'pundit', '~> 1.1'
 
+# http requests
+gem 'wor-requests', '~> 0.1.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -83,6 +86,7 @@ group :test do
   gem 'faker', '~> 1.6', '>= 1.6.6'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
+  gem 'webmock', '~> 3.4', '>= 3.4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
