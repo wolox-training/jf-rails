@@ -21,7 +21,9 @@ module Api
 
       # Summary: Get a book info by isbn
       def book_info
-        render(json: OpenLibraryService.new.book_info(params['isbn']))
+        isbn_info = OpenLibraryService.new.book_info(params['isbn'])
+        return record_not_found unless isbn_info
+        render(json: isbn_info)
       end
     end
   end

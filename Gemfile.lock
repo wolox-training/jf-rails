@@ -313,7 +313,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webmock (~> 3.4, >= 3.4.2)
   wor-paginate (~> 0.1.1)
-  wor-requests
+  wor-requests (~> 0.1.1)
 
 RUBY VERSION
    ruby 2.5.1p57
