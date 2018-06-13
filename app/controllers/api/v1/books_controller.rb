@@ -6,7 +6,7 @@ module Api
       filter_on :title, type: :string
       filter_on :description, type: :string
 
-      before_action :authenticate_user!
+      before_action :authenticate_user!, except: [:book_info]
 
       # Summary: List books with filters ang paginated
       def index
@@ -17,6 +17,11 @@ module Api
       # Summary: Show a single book json by id
       def show
         render(json: Book.find(params['id']), serializer: ShowBookSerializer)
+      end
+
+      # Summary: Get a book info by isbn
+      def book_info
+        render(json: OpenLibraryService.new.book_info(params['isbn']))
       end
     end
   end
