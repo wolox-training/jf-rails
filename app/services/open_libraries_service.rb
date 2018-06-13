@@ -1,5 +1,3 @@
-require 'wor/requests'
-
 class OpenLibraryService < Wor::Requests::Base
   # Get books info
   def book_info(isbn)
